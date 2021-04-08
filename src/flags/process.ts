@@ -1,0 +1,3 @@
+import { promptFlags } from ".";
+
+promptFlags();

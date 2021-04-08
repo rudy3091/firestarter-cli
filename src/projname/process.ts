@@ -1,0 +1,3 @@
+import { promptProjectName } from ".";
+
+promptProjectName();

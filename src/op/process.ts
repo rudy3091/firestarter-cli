@@ -1,0 +1,3 @@
+import { promptOperation } from ".";
+
+promptOperation();
