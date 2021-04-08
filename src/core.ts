@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
 import cpp from "./template/ps/cpp";
-import { execChild, MessageFlux, MessageMono } from "./spawner";
+import { MessageFlux, MessageMono } from "@type/message";
+import { execChild } from "./spawner";
 import { print, println } from "./console";
 import { Style } from "./color";
 import { Operation, ProjectName, Flag } from "@type/core";

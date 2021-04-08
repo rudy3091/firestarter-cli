@@ -1,5 +1,5 @@
 import * as _console from "..";
-import { MessageFlux } from "../../spawner";
+import { MessageFlux } from "@type/message";
 import { Style } from "../../color";
 import { Context } from "@type/core";
 

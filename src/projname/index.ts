@@ -1,4 +1,4 @@
-import { MessageMono } from "../spawner";
+import { MessageMono } from "@type/message";
 import { Style } from "../color";
 import { print, println } from "../console";
 import { getTextInput } from "../console/input/text";

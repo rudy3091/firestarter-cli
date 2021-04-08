@@ -1,21 +1,7 @@
 import { fork } from "child_process";
 import { Style } from "../color";
 import { println } from "../console";
-import { Context } from "@type/core";
-
-export interface Message {
-	context: Context;
-	type: "flux" | "mono";
-}
-
-export interface MessageFlux extends Message {
-	selected: boolean[];
-}
-
-export interface MessageMono extends Message {
-	selected?: number;
-	input?: string;
-}
+import { Message, MessageFlux, MessageMono } from "@type/message";
 
 export const isMessageFlux = (param: unknown): param is MessageFlux => {
 	return (param as Message).type === "flux";

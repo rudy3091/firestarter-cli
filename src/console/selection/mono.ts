@@ -1,5 +1,5 @@
 import * as _console from "..";
-import { MessageMono } from "../../spawner";
+import { MessageMono } from "@type/message";
 import { Style } from "../../color";
 import { Context } from "@type/core";
 
