@@ -4,28 +4,24 @@ import cpp from "./template/ps/cpp";
 import { execChild, MessageFlux, MessageMono } from "./spawner";
 import { print, println } from "./console";
 import { Style } from "./color";
+import { Operation, ProjectName, Flag } from "@type/core";
 
 export const toAbsolutePath = (p: string): string => {
 	return path.resolve(p);
 };
 
-export type Operation = "  ps (cpp)";
-export type ProjectName = string;
-export type Flag = string;
-export type Context = "op" | "projname" | "flags";
-
-export const opOptions: Operation[] = ["  ps (cpp)"];
+export const opOptions: Operation[] = ["ps (cpp)"];
 export const psFlagOptions: { key: string }[] = [
-	{ key: "  default" },
-	{ key: "  no setup func" },
-	{ key: "  no solve func" },
-	{ key: "  only main func" },
-	{ key: "  no fastio" },
-	{ key: "  typedef coord" },
-	{ key: "  typedef edge" },
-	{ key: "  typedef edge longlong" },
-	{ key: "  --dfs" },
-	{ key: "  --bfs" },
+	{ key: "default" },
+	{ key: "no setup func" },
+	{ key: "no solve func" },
+	{ key: "only main func" },
+	{ key: "no fastio" },
+	{ key: "typedef coord" },
+	{ key: "typedef edge" },
+	{ key: "typedef edge longlong" },
+	{ key: "--dfs" },
+	{ key: "--bfs" },
 ];
 
 export type GenSource = {
@@ -71,9 +67,13 @@ export async function fetchInput(): Promise<GenSource> {
 	return data;
 }
 
+export const handlePsProject = (flags: Flag[]) => {};
+
 export const run = async () => {
 	const input = await fetchInput();
 	const rootDir = path.join(__dirname, "..");
 	mkdir(rootDir, input.projname);
-	touch(path.join(rootDir, input.projname), "main.cpp");
+	if (input.op === "ps (cpp)") {
+	}
+	// touch(path.join(rootDir, input.projname), "main.cpp");
 };

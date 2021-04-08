@@ -1,7 +1,7 @@
 import { fork } from "child_process";
 import { Style } from "../color";
 import { println } from "../console";
-import { Context } from "../core";
+import { Context } from "@type/core";
 
 export interface Message {
 	context: Context;

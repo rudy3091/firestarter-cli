@@ -1,7 +1,7 @@
 import * as _console from "..";
 import { MessageMono } from "../../spawner";
 import { Style } from "../../color";
-import { Context } from "../../core";
+import { Context } from "@type/core";
 
 export const openSelection = (options: string[]) => {
 	options.forEach((option, i) => {

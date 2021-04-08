@@ -10,7 +10,11 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "dist",
     "declaration": true,
-		"esModuleInterop": true
+		"esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@type/*":["src/types/*"]
+    }
   },
   "include": [
     "src/**/*.ts"
