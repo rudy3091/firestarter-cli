@@ -4,7 +4,7 @@ import cpp from "./template/ps/cpp";
 import { execChild, MessageFlux, MessageMono } from "./spawner";
 import { print, println } from "./console";
 import { opOptions } from "./op";
-import { flagOptions } from "./flags";
+import { psFlagOptions } from "./flags/ps";
 import { Style } from "./color";
 
 export const toAbsolutePath = (p: string): string => {
@@ -53,7 +53,7 @@ export async function fetchInput(): Promise<GenSource> {
 
 	const msg3 = await execChild("dist/flags/process.js");
 	(msg3 as MessageFlux).selected.forEach((v, i) => {
-		if (v) data.flags.push(flagOptions[i].key);
+		if (v) data.flags.push(psFlagOptions[i].key);
 	});
 
 	return data;

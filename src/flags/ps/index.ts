@@ -1,8 +1,8 @@
-import { Style } from "../color";
-import { print, println } from "../console";
-import { multiSelect } from "../console/selection/flux";
+import { Style } from "../../color";
+import { print, println } from "../../console";
+import { multiSelect } from "../../console/selection/flux";
 
-export const flagOptions: { key: string }[] = [
+export const psFlagOptions: { key: string }[] = [
 	{ key: "  default" },
 	{ key: "  no setup func" },
 	{ key: "  no solve func" },
@@ -19,7 +19,7 @@ export const promptFlags = () => {
 	print(" Q ", new Style("black", "blue"));
 	println(" what do you need?", new Style("blue"));
 	multiSelect(
-		flagOptions.map((option) => option.key),
+		psFlagOptions.map((option) => option.key),
 		"flags"
 	);
 };
