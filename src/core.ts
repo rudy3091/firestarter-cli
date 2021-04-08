@@ -3,18 +3,30 @@ import path from "path";
 import cpp from "./template/ps/cpp";
 import { execChild, MessageFlux, MessageMono } from "./spawner";
 import { print, println } from "./console";
-import { opOptions } from "./op";
-import { psFlagOptions } from "./flags/ps";
 import { Style } from "./color";
 
 export const toAbsolutePath = (p: string): string => {
 	return path.resolve(p);
 };
 
-export type Operation = "  ps" | "  default (ps)";
+export type Operation = "  ps (cpp)";
 export type ProjectName = string;
 export type Flag = string;
 export type Context = "op" | "projname" | "flags";
+
+export const opOptions: Operation[] = ["  ps (cpp)"];
+export const psFlagOptions: { key: string }[] = [
+	{ key: "  default" },
+	{ key: "  no setup func" },
+	{ key: "  no solve func" },
+	{ key: "  only main func" },
+	{ key: "  no fastio" },
+	{ key: "  typedef coord" },
+	{ key: "  typedef edge" },
+	{ key: "  typedef edge longlong" },
+	{ key: "  --dfs" },
+	{ key: "  --bfs" },
+];
 
 export type GenSource = {
 	op: Operation;

@@ -1,9 +1,7 @@
 import { Style } from "../color";
 import { print, println } from "../console";
 import { singleSelect } from "../console/selection/mono";
-import { Operation } from "../core";
-
-export const opOptions: Operation[] = ["  default (ps)", "  ps"];
+import { opOptions, Operation } from "../core";
 
 export const promptOperation = () => {
 	print(" Q ", new Style("black", "blue"));
