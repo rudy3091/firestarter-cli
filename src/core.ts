@@ -5,24 +5,25 @@ import { MessageFlux, MessageMono } from "@type/message";
 import { execChild } from "./spawner";
 import { print, println } from "./console";
 import { Style } from "./color";
-import { Operation, ProjectName, Flag } from "@type/core";
+import { Operation, ProjectName, Flag, FlagOptions } from "@type/core";
 
 export const toAbsolutePath = (p: string): string => {
 	return path.resolve(p);
 };
 
 export const opOptions: Operation[] = ["ps (cpp)"];
-export const psFlagOptions: { key: string }[] = [
-	{ key: "default" },
-	{ key: "no setup func" },
-	{ key: "no solve func" },
-	{ key: "only main func" },
-	{ key: "no fastio" },
-	{ key: "typedef coord" },
-	{ key: "typedef edge" },
-	{ key: "typedef edge longlong" },
-	{ key: "--dfs" },
-	{ key: "--bfs" },
+export const psFlagOptions: FlagOptions = [
+	{ key: "default", needsValue: false },
+	{ key: "no setup func", needsValue: false },
+	{ key: "no solve func", needsValue: false },
+	{ key: "only main func", needsValue: false },
+	{ key: "no fastio", needsValue: false },
+	{ key: "typedef coord", needsValue: false },
+	{ key: "typedef edge", needsValue: false },
+	{ key: "typedef edge longlong", needsValue: false },
+	{ key: "global variables", needsValue: true },
+	{ key: "#define MAX", needsValue: true },
+	{ key: "#define MOD", needsValue: true },
 ];
 
 export type GenSource = {
@@ -60,7 +61,7 @@ export async function fetchInput(): Promise<GenSource> {
 	const msg2 = await execChild("dist/projname/process.js");
 	data.projname = (msg2 as MessageMono).input;
 
-	const msg3 = await execChild("dist/flags/process.js");
+	const msg3 = await execChild("dist/flags/ps/process.js");
 	(msg3 as MessageFlux).selected.forEach((v, i) => {
 		if (v) data.flags.push(psFlagOptions[i].key);
 	});
