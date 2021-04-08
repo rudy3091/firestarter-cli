@@ -2,7 +2,7 @@ import { main, usingStd, vector } from "./components";
 
 export const waterMark: string = `/*
  * Auto generated with firestarter-cli by @rudy3091
- * github.com/rudy3091/firestarter-cli
+ * https://github.com/rudy3091/firestarter-cli
  */`;
 
 export const inputFunc: string = `void input() {
