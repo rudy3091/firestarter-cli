@@ -6,21 +6,20 @@ export const makeRaw = () => {
 	process.stdin.setRawMode(true);
 };
 
-export const readLine = (
-	prompt: string,
-	style?: Style,
-	callback?: Function
-): string => {
+export const readLine = (prompt: string, style: Style, callback?: Function) => {
 	const input = rl.createInterface({
 		input: process.stdin,
 		output: process.stdout,
 	});
 	const prmpt = style === undefined ? prompt : convert(prompt, style);
+	input.on("SIGINT", () => {
+		input.close();
+		process.exit(1);
+	});
 	input.question(prmpt, (line) => {
 		input.close();
 		callback(line);
 	});
-	return "";
 };
 
 export const print = (str: string, style?: Style) => {
