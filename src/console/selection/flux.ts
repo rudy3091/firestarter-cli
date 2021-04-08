@@ -6,7 +6,7 @@ import { Context } from "@type/core";
 export const openSelection = (options: string[]) => {
 	options.forEach((option, i) => {
 		if (i === 0) _console.printlnFocused(option, _console.hilightStyle);
-		else _console.println(option, new Style());
+		else _console.println("  " + option, new Style());
 	});
 };
 
@@ -21,7 +21,7 @@ export const multiSelect = (options: string[], context: Context) => {
 
 	const printSelected = () => {
 		for (let i = 0; i < len; i++) {
-			if (selected[i]) _console.println(options[i] + "\r");
+			if (selected[i]) _console.println("  " + options[i] + "\r");
 		}
 	};
 
@@ -37,8 +37,8 @@ export const multiSelect = (options: string[], context: Context) => {
 			if (idx < len - 1) {
 				_console.clearLine();
 				if (selected[idx])
-					_console.print(options[idx] + "\r", _console.selectedStyle);
-				else _console.print(options[idx] + "\r");
+					_console.print("+ " + options[idx] + "\r", _console.selectedStyle);
+				else _console.print("  " + options[idx] + "\r");
 				_console.moveCursorDown();
 				idx++;
 				_console.printFocused(options[idx] + "\r", _console.hilightStyle);
@@ -50,8 +50,8 @@ export const multiSelect = (options: string[], context: Context) => {
 			if (idx > 0) {
 				_console.clearLine();
 				if (selected[idx])
-					_console.print(options[idx] + "\r", _console.selectedStyle);
-				else _console.print(options[idx] + "\r");
+					_console.print("+ " + options[idx] + "\r", _console.selectedStyle);
+				else _console.print("  " + options[idx] + "\r");
 				_console.moveCursorUp();
 				idx--;
 				_console.printFocused(options[idx] + "\r", _console.hilightStyle);

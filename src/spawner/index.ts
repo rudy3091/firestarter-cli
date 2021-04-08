@@ -1,6 +1,6 @@
 import { fork } from "child_process";
 import { Style } from "../color";
-import { println } from "../console";
+import { clearLine, println } from "../console";
 import { Message, MessageFlux, MessageMono } from "@type/message";
 
 export const isMessageFlux = (param: unknown): param is MessageFlux => {
@@ -25,7 +25,10 @@ export const execChild = (
 		child.on("exit", (code: number) => {
 			if (code !== 1) {
 				resolve(m);
-			} else println("\n😭 Aborted!", new Style("green"));
+			} else {
+				clearLine();
+				println("😭 Aborted!", new Style("green"));
+			}
 		});
 	});
 };

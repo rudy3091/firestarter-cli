@@ -6,7 +6,7 @@ import { Context } from "@type/core";
 export const openSelection = (options: string[]) => {
 	options.forEach((option, i) => {
 		if (i === 0) _console.printlnFocused(option, _console.hilightStyle);
-		else _console.println(option, new Style());
+		else _console.println("  " + option, new Style());
 	});
 };
 
@@ -18,7 +18,7 @@ export const singleSelect = (options: string[], context: Context) => {
 	const len = options.length;
 
 	const printSelected = () => {
-		_console.println(options[idx] + "\r");
+		_console.println("  " + options[idx] + "\r");
 	};
 
 	const handleKeyPress = (str: string, key: any) => {
@@ -32,7 +32,7 @@ export const singleSelect = (options: string[], context: Context) => {
 		if (str === "j" || key.sequence === "\u001b[B") {
 			if (idx < len - 1) {
 				_console.clearLine();
-				_console.print(options[idx] + "\r");
+				_console.print("  " + options[idx] + "\r");
 				_console.moveCursorDown();
 				idx++;
 				_console.printFocused(options[idx] + "\r", _console.hilightStyle);
@@ -43,7 +43,7 @@ export const singleSelect = (options: string[], context: Context) => {
 		else if (str === "k" || key.sequence === "\u001b[A") {
 			if (idx > 0) {
 				_console.clearLine();
-				_console.print(options[idx] + "\r");
+				_console.print("  " + options[idx] + "\r");
 				_console.moveCursorUp();
 				idx--;
 				_console.printFocused(options[idx] + "\r", _console.hilightStyle);
