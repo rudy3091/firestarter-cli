@@ -61,13 +61,13 @@ export async function fetchInput(): Promise<GenSource> {
 		flags: [],
 	};
 
-	const msg1 = await execChild("dist/op/process.js");
+	const msg1 = await execChild(path.join(__dirname, "op/process.js"));
 	data.op = opOptions[(msg1 as MessageMono).selected];
 
-	const msg2 = await execChild("dist/projname/process.js");
+	const msg2 = await execChild(path.join(__dirname, "projname/process.js"));
 	data.projname = (msg2 as MessageMono).input;
 
-	const msg3 = await execChild("dist/flags/ps/process.js");
+	const msg3 = await execChild(path.join(__dirname, "flags/ps/process.js"));
 	(msg3 as MessageFlux).selected.forEach((v, i) => {
 		if (v) data.flags.push(psFlagOptions[i]);
 	});
@@ -79,9 +79,7 @@ export const handlePsProject = (flags: Flag[]) => {};
 
 export const run = async () => {
 	const input = await fetchInput();
-	const rootDir = path.join(__dirname, "..");
+	const rootDir = path.resolve(".");
 	mkdir(rootDir, input.projname);
-	if (input.op === "ps (cpp)") {
-	}
 	touch(path.join(rootDir, input.projname), "main.cpp", cpp(input.flags));
 };

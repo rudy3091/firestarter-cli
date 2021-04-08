@@ -2,8 +2,8 @@ import { FlagOptions } from "@type/core";
 import { flagCheck } from "../..";
 import { fastio } from "./components";
 
-export const setupFuncExec = `setup()`;
-export const solveFuncExec = `solve()`;
+export const setupFuncExec = `setup();`;
+export const solveFuncExec = `solve();`;
 
 export const body = (flags: FlagOptions): string => {
 	const hasNoFastIo = flagCheck(flags, "no fastio");
@@ -20,6 +20,7 @@ export const body = (flags: FlagOptions): string => {
 			: `${hasNoSetupFunc ? "" : setupFuncExec}
   ${hasNoSolveFunc ? "" : solveFuncExec}`
 	}
+
   return 0;
 }`;
 };
