@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "clean": "rm -rf dist",
     "start": "tsc && node dist/index.js",
     "test": "jest"
   },
