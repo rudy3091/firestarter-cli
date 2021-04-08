@@ -1,12 +1,25 @@
 {
   "name": "firestarter-cli",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.0.0",
+  "description": "cli boilerplate generator",
+  "homepage": "https://github.com/rudy3091/firestarter-cli",
+  "bugs": {
+    "url": "https://github.com/rudy3091/firestarter-cli/issues",
+    "email": "grayblack313@gmail.com"
+  },
+  "author": {
+    "name": "rudy3091",
+    "email": "grayblack313@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rudy3091/firestarter-cli.git"
+  },
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "tsc",
-    "start": "tsc && node dist/index.js",
+    "build": "npm run clean && tsc",
+    "start": "npm run build && node dist/index.js",
     "local": "npm i -g && fire",
     "publish": "npm run test && npm run build && npm publish",
     "test": "jest"
