@@ -1,5 +1,4 @@
 export const main = `#include <iostream>`;
-export const fastio = `cin.tie(nullptr); ios_base::sync_with_stdio(false);`;
 
 export const cstdio = `#include <cstdio>`;
 export const cmath = `#include <cmath>`;

@@ -6,30 +6,36 @@ import { execChild } from "./spawner";
 import { print, println } from "./console";
 import { Style } from "./color";
 import { Operation, ProjectName, Flag, FlagOptions } from "@type/core";
+import { TemplateGenerator } from "@type/template";
 
 export const toAbsolutePath = (p: string): string => {
 	return path.resolve(p);
 };
 
+export const template: { op: Operation; template: TemplateGenerator }[] = [
+	{ op: "ps (cpp)", template: cpp },
+];
+
 export const opOptions: Operation[] = ["ps (cpp)"];
 export const psFlagOptions: FlagOptions = [
 	{ key: "default", needsValue: false },
+	{ key: "no global using namespace std", needsValue: false },
 	{ key: "no setup func", needsValue: false },
 	{ key: "no solve func", needsValue: false },
 	{ key: "only main func", needsValue: false },
 	{ key: "no fastio", needsValue: false },
-	{ key: "typedef coord", needsValue: false },
-	{ key: "typedef edge", needsValue: false },
-	{ key: "typedef edge longlong", needsValue: false },
-	{ key: "global variables", needsValue: true },
-	{ key: "#define MAX", needsValue: true },
-	{ key: "#define MOD", needsValue: true },
+	// { key: "typedef coord", needsValue: false },
+	// { key: "typedef edge", needsValue: false },
+	// { key: "typedef edge longlong", needsValue: false },
+	// { key: "global variables", needsValue: true },
+	// { key: "#define MAX", needsValue: true },
+	// { key: "#define MOD", needsValue: true },
 ];
 
 export type GenSource = {
 	op: Operation;
 	projname: ProjectName;
-	flags: Flag[];
+	flags: FlagOptions;
 };
 
 export const mkdir = (loc: string, dir: string): void => {
@@ -42,8 +48,8 @@ export const mkdir = (loc: string, dir: string): void => {
 	});
 };
 
-export const touch = (loc: string, file: string): void => {
-	fs.writeFile(path.join(loc, file), cpp, (err) => {
+export const touch = (loc: string, fileName: string, content: string): void => {
+	fs.writeFile(path.join(loc, fileName), content, (err) => {
 		if (err) console.log(err);
 	});
 };
@@ -63,7 +69,7 @@ export async function fetchInput(): Promise<GenSource> {
 
 	const msg3 = await execChild("dist/flags/ps/process.js");
 	(msg3 as MessageFlux).selected.forEach((v, i) => {
-		if (v) data.flags.push(psFlagOptions[i].key);
+		if (v) data.flags.push(psFlagOptions[i]);
 	});
 
 	return data;
@@ -77,5 +83,5 @@ export const run = async () => {
 	mkdir(rootDir, input.projname);
 	if (input.op === "ps (cpp)") {
 	}
-	// touch(path.join(rootDir, input.projname), "main.cpp");
+	touch(path.join(rootDir, input.projname), "main.cpp", cpp(input.flags));
 };
