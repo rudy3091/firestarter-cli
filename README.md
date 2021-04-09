@@ -21,51 +21,51 @@ template for problem-solving using cpp
 
 - #### default:
 
-default template for `ps (cpp)` project
+  default template for `ps (cpp)` project
 
-```cpp
-/*
- * Auto generated with firestarter-cli by @rudy3091
- * https://github.com/rudy3091/firestarter-cli
- */
+  ```cpp
+  /*
+  * Auto generated with firestarter-cli by @rudy3091
+  * https://github.com/rudy3091/firestarter-cli
+  */
 
-#include <iostream>
-using namespace std;
+  #include <iostream>
+  using namespace std;
 
-void setup() {
-}
+  void setup() {
+  }
 
-void solve() {
-}
+  void solve() {
+  }
 
-int main() {
-	cin.tie(nullptr); ios_base::sync_with_stdio(false);
+  int main() {
+    cin.tie(nullptr); ios_base::sync_with_stdio(false);
 
-	setup();
-	solve();
+    setup();
+    solve();
 
-	return 0;
-}
-```
+    return 0;
+  }
+  ```
 
 - #### no global using namespace std
 
-does not generate `using namespace std;` line if this flag is set
+  does not generate `using namespace std;` line if this flag is set
 
 - #### no setup func
 
-does not generate `setup` function if this flag is set
+  does not generate `setup` function if this flag is set
 
 - #### no solve func
 
-does not generate `solve` function if this flag is set
+  does not generate `solve` function if this flag is set
 
 - #### only main func
 
-generates only `main` function
+  generates only `main` function
 
-has same effect with setting both `no setup func` and `no solve func` flags on
+  has same effect with setting both `no setup func` and `no solve func` flags on
 
 - #### no fastio
 
-does not generate `cin.tie(nullptr); ios_base::sync_with_stdio(false);` for a fast input/output
+  does not generate `cin.tie(nullptr); ios_base::sync_with_stdio(false);` for a fast input/output
