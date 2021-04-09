@@ -19,17 +19,36 @@ export const header = (flags: FlagOptions) => {
 	const hasNoGlobalUsingStd = flagCheck(flags, "no global using namespace std");
 	const hasOnlyMainFunc = flagCheck(flags, "only main func");
 
-	return `${waterMark}
+	let headerString = `${waterMark}
 
-${main}
-${hasNoGlobalUsingStd ? "" : usingStd}
-
-${
-	hasOnlyMainFunc
-		? ""
-		: `${hasNoSetupFunc ? "" : setupFunc}
-
-${hasNoSolveFunc ? "" : solveFunc}`
-}
 `;
+	headerString += `${main}
+`;
+	headerString += `${
+		hasNoGlobalUsingStd
+			? ""
+			: `${usingStd}
+
+`
+	}`;
+	if (hasOnlyMainFunc) {
+		return headerString;
+	} else {
+		headerString += `${
+			hasNoSetupFunc
+				? ""
+				: `${setupFunc}
+
+`
+		}`;
+		headerString += `${
+			hasNoSolveFunc
+				? ""
+				: `${solveFunc}
+
+`
+		}`;
+	}
+
+	return headerString;
 };

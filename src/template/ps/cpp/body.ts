@@ -11,16 +11,30 @@ export const body = (flags: FlagOptions): string => {
 	const hasNoSolveFunc = flagCheck(flags, "no solve func");
 	const hasOnlyMainFunc = flagCheck(flags, "only main func");
 
-	return `int main() {
-  ${hasNoFastIo ? "" : fastio}
+	let bodyString = `int main() {
+	`;
+	bodyString += hasNoFastIo
+		? ""
+		: `${fastio}
 
-  ${
-		hasOnlyMainFunc
+	`;
+
+	if (hasOnlyMainFunc) {
+		bodyString += `return 0;
+}`;
+	} else {
+		bodyString += hasNoSetupFunc
 			? ""
-			: `${hasNoSetupFunc ? "" : setupFuncExec}
-  ${hasNoSolveFunc ? "" : solveFuncExec}`
+			: `${setupFuncExec}
+	`;
+		bodyString += hasNoSolveFunc
+			? ""
+			: `${solveFuncExec}
+
+	`;
+		bodyString += `return 0;
+}`;
 	}
 
-  return 0;
-}`;
+	return bodyString;
 };
