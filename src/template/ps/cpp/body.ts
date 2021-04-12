@@ -6,6 +6,7 @@ export const setupFuncExec = `setup();`;
 export const solveFuncExec = `solve();`;
 
 export const body = (flags: FlagOptions): string => {
+	const hasNoGlobalUsingStd = flagCheck(flags, "no global using namespace std");
 	const hasNoFastIo = flagCheck(flags, "no fastio");
 	const hasNoSetupFunc = flagCheck(flags, "no setup func");
 	const hasNoSolveFunc = flagCheck(flags, "no solve func");
@@ -15,7 +16,7 @@ export const body = (flags: FlagOptions): string => {
 	`;
 	bodyString += hasNoFastIo
 		? ""
-		: `${fastio}
+		: `${fastio(hasNoGlobalUsingStd)}
 
 	`;
 

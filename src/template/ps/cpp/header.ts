@@ -1,6 +1,13 @@
 import { FlagOptions } from "@type/core";
 import { flagCheck } from "../..";
-import { main, usingStd, vector } from "./components";
+import {
+	main,
+	usingStd,
+	coord,
+	edge,
+	edgeLong,
+	appendNewline,
+} from "./components";
 
 export const waterMark: string = `/*
  * Auto generated with firestarter-cli by @rudy3091
@@ -19,18 +26,34 @@ export const header = (flags: FlagOptions) => {
 	const hasNoGlobalUsingStd = flagCheck(flags, "no global using namespace std");
 	const hasOnlyMainFunc = flagCheck(flags, "only main func");
 
+	const hasTypedefCoord = flagCheck(flags, "typedef coord");
+	const hasTypedefEdge = flagCheck(flags, "typedef edge");
+	const hasTypedefEdgeLong = flagCheck(flags, "typedef edge longlong");
+
 	let headerString = `${waterMark}
 
+${main}
 `;
-	headerString += `${main}
-`;
-	headerString += `${
-		hasNoGlobalUsingStd
-			? ""
-			: `${usingStd}
 
-`
-	}`;
+	if (!hasNoGlobalUsingStd) {
+		headerString += usingStd;
+		headerString = appendNewline(headerString);
+	}
+
+	if (hasTypedefCoord) {
+		headerString += coord(hasNoGlobalUsingStd);
+		headerString = appendNewline(headerString);
+	}
+	if (hasTypedefEdge) {
+		headerString += edge(hasNoGlobalUsingStd);
+		headerString = appendNewline(headerString);
+	}
+	if (hasTypedefEdgeLong) {
+		headerString += edgeLong(hasNoGlobalUsingStd);
+		headerString = appendNewline(headerString);
+	}
+	headerString = appendNewline(headerString);
+
 	if (hasOnlyMainFunc) {
 		return headerString;
 	} else {
