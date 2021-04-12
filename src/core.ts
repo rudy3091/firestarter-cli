@@ -75,11 +75,13 @@ export async function fetchInput(): Promise<GenSource> {
 	return data;
 }
 
-export const handlePsProject = (flags: Flag[]) => {};
+export const handlePsCppProject = (input: GenSource) => {
+	const rootDir = toAbsolutePath(".");
+	mkdir(rootDir, input.projname);
+	touch(path.join(rootDir, input.projname), "main.cpp", cpp(input.flags));
+};
 
 export const run = async () => {
 	const input = await fetchInput();
-	const rootDir = path.resolve(".");
-	mkdir(rootDir, input.projname);
-	touch(path.join(rootDir, input.projname), "main.cpp", cpp(input.flags));
+	if (input.op === "ps (cpp)") handlePsCppProject(input);
 };
