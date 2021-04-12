@@ -7,6 +7,7 @@ import {
 	edge,
 	edgeLong,
 	appendNewline,
+	tuple,
 } from "./components";
 
 export const waterMark: string = `/*
@@ -32,8 +33,13 @@ export const header = (flags: FlagOptions) => {
 
 	let headerString = `${waterMark}
 
-${main}
-`;
+${main}`;
+	headerString = appendNewline(headerString);
+
+	if (hasTypedefEdge || hasTypedefEdgeLong) {
+		headerString += tuple;
+		headerString = appendNewline(headerString);
+	}
 
 	if (!hasNoGlobalUsingStd) {
 		headerString += usingStd;

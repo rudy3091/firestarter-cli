@@ -39,7 +39,8 @@ template for problem-solving using cpp
   }
 
   int main() {
-    cin.tie(nullptr); ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+  	ios_base::sync_with_stdio(false);
 
     setup();
     solve();
@@ -69,3 +70,15 @@ template for problem-solving using cpp
 - #### no fastio
 
   does not generate `cin.tie(nullptr); ios_base::sync_with_stdio(false);` for a fast input/output
+
+- #### typedef coord
+
+  adds `typedef pair<int, int> coord;` for a graph searching problem
+
+- #### typedef edge
+
+  adds `typedef tuple<int, int, int> edge;` for a graph searching problem
+
+- #### typedef edge longlong
+
+  adds `typedef tuple<int, int, longlong> edge;` for a graph searching problem
