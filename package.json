@@ -1,6 +1,6 @@
 {
   "name": "firestarter-cli",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "cli boilerplate generator",
   "homepage": "https://github.com/rudy3091/firestarter-cli",
   "bugs": {

@@ -82,3 +82,7 @@ template for problem-solving using cpp
 - #### typedef edge longlong
 
   adds `typedef tuple<int, int, longlong> edge;` for a graph searching problem
+
+- #### add README.md
+
+  adds `README.md` file in your project root directory

@@ -7,6 +7,7 @@ import { print, println } from "./console";
 import { Style } from "./color";
 import { Operation, ProjectName, Flag, FlagOptions } from "@type/core";
 import { TemplateGenerator } from "@type/template";
+import { flagCheck } from "./template";
 
 export const toAbsolutePath = (p: string): string => {
 	return path.resolve(p);
@@ -27,6 +28,7 @@ export const psFlagOptions: FlagOptions = [
 	{ key: "typedef coord", needsValue: false },
 	{ key: "typedef edge", needsValue: false },
 	{ key: "typedef edge longlong", needsValue: false },
+	{ key: "add README.md", needsValue: false },
 	// { key: "global variables", needsValue: true },
 	// { key: "#define MAX", needsValue: true },
 	// { key: "#define MOD", needsValue: true },
@@ -79,6 +81,9 @@ export const handlePsCppProject = (input: GenSource) => {
 	const rootDir = toAbsolutePath(".");
 	mkdir(rootDir, input.projname);
 	touch(path.join(rootDir, input.projname), "main.cpp", cpp(input.flags));
+	if (flagCheck(input.flags, "add README.md")) {
+		touch(path.join(rootDir, input.projname), "README.md", "");
+	}
 };
 
 export const run = async () => {
