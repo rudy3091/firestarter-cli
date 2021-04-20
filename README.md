@@ -11,38 +11,39 @@ $ fire
 
 # Operations
 
-## ps (cpp)
+- ## ps (cpp)
 
-template for problem-solving using cpp
+  template for problem-solving using cpp
 
-#### Flags
+  #### Flags
 
-see [docs](https://github.com/rudy3091/firestarter-cli/blob/master/docs/ps.md)
+  see [docs](https://github.com/rudy3091/firestarter-cli/blob/master/docs/ps.md)
 
-## webpack
 
-template for [project using webpack & typescript + sass loaders](https://github.com/rudy3091/ts-scss-boilerplate)
+- ## webpack
 
-#### requirements
+  template for [project using webpack & typescript + sass loaders](https://github.com/rudy3091/ts-scss-boilerplate)
 
-- git
+  #### requirements
 
-#### project structure
+  - git
 
-```
-.
-├── index.html
-├── package.json
-├── src
-│   ├── App.module.scss
-│   ├── App.ts
-│   ├── index.ts
-│   ├── styles
-│   │   └── style.module.scss
-│   └── types
-│       ├── component.ts
-│       └── sass-module.d.ts
-├── tsconfig.json
-├── webpack.config.js
-└── yarn.lock
-```
+  #### project structure
+
+  ```
+  .
+  ├── index.html
+  ├── package.json
+  ├── src
+  │   ├── App.module.scss
+  │   ├── App.ts
+  │   ├── index.ts
+  │   ├── styles
+  │   │   └── style.module.scss
+  │   └── types
+  │       ├── component.ts
+  │       └── sass-module.d.ts
+  ├── tsconfig.json
+  ├── webpack.config.js
+  └── yarn.lock
+  ```
