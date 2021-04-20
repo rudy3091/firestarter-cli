@@ -12,4 +12,4 @@ export const edgeLong = (std: boolean) =>
 
 export const fastio = (std: boolean) =>
 	`${std ? "std::" : ""}cin.tie(nullptr);
-  ${std ? "std::" : ""}ios_base::sync_with_stdio(false);`;
+	${std ? "std::" : ""}ios_base::sync_with_stdio(false);`;
