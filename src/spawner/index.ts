@@ -1,4 +1,4 @@
-import { fork } from "child_process";
+import { fork, spawn } from "child_process";
 import { Style } from "../color";
 import { clearLine, println } from "../console";
 import { Message, MessageFlux, MessageMono } from "@type/message";
@@ -11,7 +11,7 @@ export const isMessageMono = (param: unknown): param is MessageMono => {
 	return (param as Message).type === "mono";
 };
 
-export const execChild = (
+export const execNodeCommand = (
 	target: string
 ): Promise<MessageMono | MessageFlux> => {
 	return new Promise<Message>((resolve, reject) => {
@@ -32,3 +32,18 @@ export const execChild = (
 		});
 	});
 };
+
+export const execChild = (cmd: string, args: string[]) => {
+	return new Promise<string>((resolve, reject) => {
+		const child = spawn(cmd, args, { stdio: "inherit" });
+
+		child.on("exit", (code: number) => {
+			if (code !== 0) {
+				clearLine();
+				println("Error!", new Style("black", "red"));
+			} else {
+				resolve("ok");
+			}
+		})
+	});
+}

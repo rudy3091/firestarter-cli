@@ -1,8 +1,9 @@
 import fs from "fs";
 import path from "path";
 import cpp from "./template/ps/cpp";
+import webpack from "./template/webpack";
 import { MessageFlux, MessageMono } from "@type/message";
-import { execChild } from "./spawner";
+import { execChild, execNodeCommand } from "./spawner";
 import { print, println } from "./console";
 import { Style } from "./color";
 import { Operation, ProjectName, Flag, FlagOptions } from "@type/core";
@@ -15,9 +16,10 @@ export const toAbsolutePath = (p: string): string => {
 
 export const template: { op: Operation; template: TemplateGenerator }[] = [
 	{ op: "ps (cpp)", template: cpp },
+	{ op: "webpack", template: webpack },
 ];
 
-export const opOptions: Operation[] = ["ps (cpp)"];
+export const opOptions: Operation[] = ["ps (cpp)", "webpack"];
 export const psFlagOptions: FlagOptions = [
 	{ key: "default", needsValue: false },
 	{ key: "no global using namespace std", needsValue: false },
@@ -63,16 +65,26 @@ export async function fetchInput(): Promise<GenSource> {
 		flags: [],
 	};
 
-	const msg1 = await execChild(path.join(__dirname, "op/process.js"));
+	const msg1 = await execNodeCommand(path.join(__dirname, "op/process.js"));
 	data.op = opOptions[(msg1 as MessageMono).selected];
 
-	const msg2 = await execChild(path.join(__dirname, "projname/process.js"));
+	const msg2 = await execNodeCommand(
+		path.join(__dirname, "projname/process.js")
+	);
 	data.projname = (msg2 as MessageMono).input;
 
-	const msg3 = await execChild(path.join(__dirname, "flags/ps/process.js"));
-	(msg3 as MessageFlux).selected.forEach((v, i) => {
-		if (v) data.flags.push(psFlagOptions[i]);
-	});
+	if (data.op.split(" ")[0] === "ps") {
+		const msg3 = await execNodeCommand(
+			path.join(__dirname, "flags/ps/process.js")
+		);
+		(msg3 as MessageFlux).selected.forEach((v, i) => {
+			if (v) data.flags.push(psFlagOptions[i]);
+		});
+	} else {
+		const msg3 = await execNodeCommand(
+			path.join(__dirname, "flags/webpack/process.js")
+		);
+	}
 
 	return data;
 }
@@ -86,7 +98,18 @@ export const handlePsCppProject = (input: GenSource) => {
 	}
 };
 
+export const handleWebpackProject = async (input: GenSource) => {
+	const rootDir = toAbsolutePath(".");
+	await execChild("git", [
+		"clone",
+		"https://github.com/rudy3091/ts-scss-boilerplate.git",
+	]);
+	await execChild("mv", ["ts-scss-boilerplate", input.projname]);
+	await execChild("rm", ["-rf", path.join(input.projname, ".git")]);
+};
+
 export const run = async () => {
 	const input = await fetchInput();
 	if (input.op === "ps (cpp)") handlePsCppProject(input);
+	else if (input.op === "webpack") handleWebpackProject(input);
 };
