@@ -103,8 +103,8 @@ export const handleWebpackProject = async (input: GenSource) => {
 	await execChild("git", [
 		"clone",
 		"https://github.com/rudy3091/ts-scss-boilerplate.git",
+		path.join(rootDir, input.projname),
 	]);
-	await execChild("mv", ["ts-scss-boilerplate", input.projname]);
 	await execChild("rm", ["-rf", path.join(input.projname, ".git")]);
 };
 

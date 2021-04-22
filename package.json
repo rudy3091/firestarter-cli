@@ -1,6 +1,6 @@
 {
   "name": "firestarter-cli",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "cli boilerplate generator",
   "homepage": "https://github.com/rudy3091/firestarter-cli",
   "bugs": {
@@ -21,7 +21,7 @@
     "build": "npm run clean && npx swc src -d dist -C module.type=commonjs",
     "start": "npm run build && node dist/index.js",
     "local": "npm i -g && fire",
-    "publish": "npm run test && npm run build && npm publish",
+    "deploy": "npm run test && npm run build && npm publish",
     "test": "jest"
   },
   "bin": {
