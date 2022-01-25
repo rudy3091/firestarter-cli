@@ -18,7 +18,7 @@ export const body = (flags: FlagOptions): string => {
 		? ""
 		: `${fastio(hasNoGlobalUsingStd)}
 
-	`;
+  `;
 
 	if (hasOnlyMainFunc) {
 		bodyString += `return 0;
@@ -27,12 +27,12 @@ export const body = (flags: FlagOptions): string => {
 		bodyString += hasNoSetupFunc
 			? ""
 			: `${setupFuncExec}
-	`;
+  `;
 		bodyString += hasNoSolveFunc
 			? ""
 			: `${solveFuncExec}
 
-	`;
+  `;
 		bodyString += `return 0;
 }`;
 	}
